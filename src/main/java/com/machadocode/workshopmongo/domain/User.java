@@ -1,5 +1,6 @@
 package com.machadocode.workshopmongo.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,6 +8,7 @@ import java.util.Objects;
 @Document(collection = "user")
 public class User implements java.io.Serializable{
     public static final long serialVersionUID = 1L;
+    @JsonProperty("_id")
     @Id
     private String id;
     private String name;
@@ -15,6 +17,7 @@ public class User implements java.io.Serializable{
     public User() {
     }
     public User(String id, String name, String email) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;
