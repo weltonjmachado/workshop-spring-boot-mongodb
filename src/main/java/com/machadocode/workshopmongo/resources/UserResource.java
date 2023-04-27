@@ -1,5 +1,6 @@
 package com.machadocode.workshopmongo.resources;
 
+import com.machadocode.workshopmongo.domain.Post;
 import com.machadocode.workshopmongo.domain.User;
 import com.machadocode.workshopmongo.dto.UserDTO;
 import com.machadocode.workshopmongo.services.UserService;
@@ -52,6 +53,11 @@ public class UserResource {
         URI uri =
         ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
