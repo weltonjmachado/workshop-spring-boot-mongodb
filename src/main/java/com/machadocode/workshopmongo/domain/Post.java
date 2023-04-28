@@ -1,10 +1,12 @@
 package com.machadocode.workshopmongo.domain;
 
 import com.machadocode.workshopmongo.dto.AuthorDTO;
+import com.machadocode.workshopmongo.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 @Document(collection = "post")
 public class Post implements java.io.Serializable{
@@ -17,6 +19,8 @@ public static final long serialVersionUID = 1L;
     private Date date;
 
     private AuthorDTO author;
+
+    private java.util.List<CommentDTO> comments = new java.util.ArrayList<>();
 
     public Post() {
     }
@@ -63,6 +67,14 @@ public static final long serialVersionUID = 1L;
         this.date = date;
     }
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public boolean equals (Object obj){
         if (this == obj) return true;
@@ -83,4 +95,6 @@ public static final long serialVersionUID = 1L;
     public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
+
+
 }
